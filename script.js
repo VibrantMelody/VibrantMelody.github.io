@@ -176,7 +176,7 @@ window.addEventListener('touchend', (e) => {
         if ((endTime - startTime) >= 400) {
             direction = 'Space'
         } 
-        tap = 1;
+        tap = 0;
     } else { tap ++; }
     startTime = new Date().getTime();
 
