@@ -30,6 +30,7 @@ body{
 
 #main-container {
     outline: 2px solid var(--lineBold);
+    pointer-events: none;
     width: 82%;
     height: 92%;
 
@@ -47,6 +48,7 @@ body{
 
 #side-container {
     outline: 2px solid var(--lineBold);
+    pointer-events: none;
     font-family: pac pac;
     width: 12%;
     height: 92%;

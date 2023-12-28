@@ -152,7 +152,7 @@ function move(direction){
 }
 
 // calculating touchinput to figure out direction
-let xDirectionStart, yDirectionStart, startTime, tap = 1,  direction;
+let xDirectionStart, yDirectionStart, startTime, tap = -1,  direction;
 window.addEventListener('touchstart', (e) => {
     xDirectionStart = (e.touches[0].clientX)
     yDirectionStart = (e.touches[0].clientY)})
@@ -171,14 +171,15 @@ window.addEventListener('touchend', (e) => {
         yDirectionShift > 0 ?  direction = 'ArrowUp' : direction = 'ArrowDown';
     }
 
-    // if (tap >= 2) {
-    //     const endTime = new Date().getTime();
-    //     if ((endTime - startTime) >= 200) {
-    //         direction = 'Space'
-    //     } 
-    //     tap = 0;
-    // } else { tap ++; }
-    // startTime = new Date().getTime();
+    tap++
+    if (tap >= 2) {
+        const endTime = new Date().getTime();
+        if ((endTime - startTime) <= 200) {
+            direction = 'Space'
+        } 
+        tap = -1;
+    }
+    startTime = new Date().getTime();
 
     switchDirection(direction);
 })
