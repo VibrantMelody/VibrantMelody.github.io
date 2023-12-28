@@ -171,14 +171,14 @@ window.addEventListener('touchend', (e) => {
         yDirectionShift > 0 ?  direction = 'ArrowUp' : direction = 'ArrowDown';
     }
 
-    if (tap >= 2) {
-        const endTime = new Date().getTime();
-        if ((endTime - startTime) >= 400) {
-            direction = 'Space'
-        } 
-        tap = 0;
-    } else { tap ++; }
-    startTime = new Date().getTime();
+    // if (tap >= 2) {
+    //     const endTime = new Date().getTime();
+    //     if ((endTime - startTime) >= 200) {
+    //         direction = 'Space'
+    //     } 
+    //     tap = 0;
+    // } else { tap ++; }
+    // startTime = new Date().getTime();
 
     switchDirection(direction);
 })
