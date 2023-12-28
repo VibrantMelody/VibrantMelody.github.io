@@ -148,7 +148,7 @@ body{
 @media (max-width: 768px) {
     body {
         flex-direction: column-reverse;
-        height: 100vh;
+        height: 100svh;
     }
 
     #main-container {
