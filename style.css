@@ -1,0 +1,163 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+@font-face {
+    font-family: pac pac;
+    src: url('fonts/Press_Start_2P/PressStart2P-Regular.ttf');
+}
+
+:root {
+    --background: #181A1B;
+    --line: rgb(128, 120, 106, .2);
+    --lineBold: rgb(128, 120, 106, .8);
+    --offWhite: rgb(255, 255, 255, .6) 
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    touch-action: none;
+
+    display: flex;
+    justify-content: space-evenly;
+    place-items: center;
+
+    background-color: var(--background);
+    color: white;
+}
+
+#main-container {
+    outline: 2px solid var(--lineBold);
+    width: 82%;
+    height: 92%;
+
+    display: none;
+    flex-wrap: wrap;
+}
+
+.boxes {
+    outline: 1px solid var(--line);
+    opacity: 0;
+
+    display: grid;
+    place-items: center;
+}
+
+#side-container {
+    outline: 2px solid var(--lineBold);
+    font-family: pac pac;
+    width: 12%;
+    height: 92%;
+
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    place-items: center;
+    gap: 1rem;
+}
+
+#side-container > :nth-child(1) {
+    font-size: calc(1rem + 1vw);
+}
+
+#side-container > :nth-child(2) {
+    font-size: calc(1rem + .5vw);
+}
+
+
+#welcome-page {
+    font-family: pac pac;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    place-items: center;
+    gap: 1rem;
+}
+
+#welcome-page > :nth-child(1) {
+    font-size: calc(.8rem + 1vw);
+}
+
+#welcome-page > button {
+    font-family: pac pac;
+    color: white;
+    padding: .5rem 1rem;
+    background: var(--background);
+    border: 2px solid var(--line);
+}
+
+#pause-page {
+    position: absolute;
+    padding: 1rem;
+    font-family: pac pac;
+    background-color: var(--background);
+    outline: 2px solid var(--lineBold);
+
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    place-items: center;
+    gap: 1rem;
+}
+
+#pause-page :nth-child(1) {
+    font-size: calc(.8rem + 1vw);
+    text-decoration: underline;
+}
+
+#pause-page :nth-child(2) {
+    margin: 0 2rem;
+    text-align: center;
+}
+
+#alertbox{
+    width: 20%;
+    aspect-ratio: 1/.5;
+    outline: 1px solid sandybrown;
+
+    position: absolute;
+    background-color: var(--background);
+
+    display: none;
+    justify-content: center;
+    place-items: center;
+}
+
+#pacman {
+    width: 60%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+
+    background-image: url(assets/pacmanRight.png);
+    background-size: cover;
+    background-position: center;
+}
+
+
+.ghost {
+    width: 60%;
+    aspect-ratio: 1/1;
+
+    background-size: 100% 100%;
+    background-position: center;
+}
+
+@media (max-width: 768px) {
+    body {
+        flex-direction: column-reverse;
+        height: 100vh;
+    }
+
+    #main-container {
+        height: 82%;
+        width: 92%;
+    }
+
+    #side-container {
+        height: 12%;
+        width: 92%;
+    }
+}
