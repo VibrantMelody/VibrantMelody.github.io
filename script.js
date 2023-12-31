@@ -1,19 +1,15 @@
 const ghostFaces = ['ghostBlue', 'ghostYellow', 'ghostRed', 'ghostGreen']
 const swoop = new Audio('assets/swoop.mp3');
 
-const score = document.getElementById('score');
-let currentScore = Number(score.innerText);
-
-const mainContainer = document.getElementById('main-container')
-const sideContainer = document.getElementById('side-container')
-let horizontalBoxes, verticalBoxes;
-
 function randomNumGenerator (min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+const mainContainer = document.getElementById('main-container')
+const sideContainer = document.getElementById('side-container')
 const pacman = document.createElement('div');
 const ghost = document.createElement('div');
+const playPause = document.getElementById('playpause');
 
 function createGhost () {
     ghost.setAttribute('class', 'ghost');
@@ -21,6 +17,8 @@ function createGhost () {
     const ghostBox = document.querySelector(`#main-container > :nth-child(${randomNumGenerator(1, horizontalBoxes * verticalBoxes)})`)
     ghostBox.appendChild(ghost);
 }
+
+let horizontalBoxes, verticalBoxes;
 function displayGrid () {
     document.getElementById('welcome-page').style.display = 'none';
     document.getElementById('main-container').style.display = 'flex';
@@ -50,12 +48,29 @@ function displayGrid () {
     const middleBox = document.querySelector(`#main-container > :nth-child(${ Math.round((horizontalBoxes * verticalBoxes) / 2 - (horizontalBoxes / 2)) })`)
     middleBox.appendChild(pacman);
     createGhost();
+
+    const desktop = ['Paused', 'Press space or arrow keys to continue']
+    const mobile = ['Paused', 'Press the play icon to continue']
+    if (isTouchDevice) {
+        for (const elements of mobile) {
+            const childElement = document.createElement('p');
+            childElement.textContent = elements;
+            pausePage.appendChild(childElement);
+        }
+    } else {
+        for (const elements of desktop) {
+            const childElement = document.createElement('p');
+            childElement.textContent = elements;
+            pausePage.appendChild(childElement);
+        }
+    }
 } 
 
 const mover = (dir) => {
     interval = setInterval(move, intervalDuration, dir)
 }
 
+let isPaused = true;
 const pausePage = document.getElementById('pause-page');
 function switchDirection (direction) {
     switch (direction) {
@@ -100,18 +115,25 @@ function switchDirection (direction) {
                 if (snakeDirection !== 'none' ){
                     mover(snakeDirection);
                     isPaused = false;
+                    pausePage.style.display = 'none'
+                    playPause.classList.toggle('pause')
+                    playPause.classList.toggle('play')
                 }
-                pausePage.style.display = 'none'
             } else {
                 clearInterval(interval);
                 isPaused = true;
                 pausePage.style.display = 'flex'
+                playPause.classList.toggle('pause')
+                playPause.classList.toggle('play')
             }
             break;
     }
 }
 
+const score = document.getElementById('score');
+let currentScore = Number(score.innerText);
 let interval, intervalDuration = 300;
+
 function move(direction){
     let parentBox, currentParentClass, difference, siblingElement;
     switch (direction) {
@@ -149,14 +171,14 @@ function move(direction){
     }
 }
 
-let isTouchDevice = false;
 // calculating touchinput to figure out direction
-let xDirectionStart, yDirectionStart, startTime, tap = -1,  direction;
-window.addEventListener('touchstart', (e) => {
-    isTouchDevice = true;
+let xDirectionStart, yDirectionStart, direction, isTouchDevice = false;
+window.ontouchend = () => {isTouchDevice = true}
+mainContainer.addEventListener('touchstart', (e) => {
     xDirectionStart = (e.touches[0].clientX)
     yDirectionStart = (e.touches[0].clientY)})
-window.addEventListener('touchend', (e) => {
+
+mainContainer.addEventListener('touchend', (e) => {
     const xDirectionEnd = (e.changedTouches[0].clientX)
     const yDirectionEnd = (e.changedTouches[0].clientY)
 
@@ -171,11 +193,10 @@ window.addEventListener('touchend', (e) => {
         yDirectionShift > 0 ?  direction = 'ArrowUp' : direction = 'ArrowDown';
     }
 
-
     switchDirection(direction);
 })
 
-let lastKeyPressed, snakeDirection = 'none', isPaused = true, keyCounter;
+let lastKeyPressed, snakeDirection = 'none', keyCounter;
 const alertBox = document.getElementById('alertBox');
 
 // keyboard input from user
@@ -203,3 +224,7 @@ window.addEventListener('keyup', (events) => {
     switchDirection(events.code);
     lastKeyPressed = events.code;
 })
+
+function icon() {
+    switchDirection('Space')
+}

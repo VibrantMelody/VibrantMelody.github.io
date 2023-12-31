@@ -1,7 +1,6 @@
 *{
     padding: 0;
     margin: 0;
-    touch-action: none;
 }
 
 @font-face {
@@ -30,7 +29,7 @@ body{
 
 #main-container {
     outline: 2px solid var(--lineBold);
-    pointer-events: none;
+    touch-action: none;
     width: 82%;
     height: 92%;
 
@@ -48,7 +47,7 @@ body{
 
 #side-container {
     outline: 2px solid var(--lineBold);
-    pointer-events: none;
+    position: relative;
     font-family: pac pac;
     width: 12%;
     height: 92%;
@@ -61,13 +60,37 @@ body{
 }
 
 #side-container > :nth-child(1) {
+    pointer-events: none;
     font-size: calc(1rem + 1vw);
 }
 
 #side-container > :nth-child(2) {
+    pointer-events: none;
     font-size: calc(1rem + .5vw);
 }
 
+#playpause {
+    height: 50%;
+    width: 8%;
+    border: none;
+    display: none;
+
+    position: absolute;
+    top: 50%;
+    right: 10%;
+    transform: translateY(-50%);
+    
+    background-color: inherit;
+    background-size: 100% 100%;
+    background-position: center;
+}
+
+.pause {
+    background-image: url('assets/pause.svg');
+}
+.play {
+    background-image: url('assets/play.svg');
+}
 
 #welcome-page {
     font-family: pac pac;
@@ -161,5 +184,9 @@ body{
     #side-container {
         height: 12%;
         width: 92%;
+    }
+
+    #playpause {
+        display: block;
     }
 }
