@@ -1,5 +1,3 @@
-// 1Box has to be 4% overall width of the window - The score box is 12% with 6% gap between the two container, that leaves us with 82% to play with
-
 const ghostFaces = ['ghostBlue', 'ghostYellow', 'ghostRed', 'ghostGreen']
 const swoop = new Audio('assets/swoop.mp3');
 
@@ -151,9 +149,11 @@ function move(direction){
     }
 }
 
+let isTouchDevice = false;
 // calculating touchinput to figure out direction
 let xDirectionStart, yDirectionStart, startTime, tap = -1,  direction;
 window.addEventListener('touchstart', (e) => {
+    isTouchDevice = true;
     xDirectionStart = (e.touches[0].clientX)
     yDirectionStart = (e.touches[0].clientY)})
 window.addEventListener('touchend', (e) => {
@@ -171,15 +171,6 @@ window.addEventListener('touchend', (e) => {
         yDirectionShift > 0 ?  direction = 'ArrowUp' : direction = 'ArrowDown';
     }
 
-    tap++
-    if (tap >= 2) {
-        const endTime = new Date().getTime();
-        if ((endTime - startTime) <= 200) {
-            direction = 'Space'
-        } 
-        tap = -1;
-    }
-    startTime = new Date().getTime();
 
     switchDirection(direction);
 })
