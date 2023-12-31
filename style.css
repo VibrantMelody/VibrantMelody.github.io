@@ -139,14 +139,14 @@ body{
 }
 
 #alertbox{
-    width: 20%;
-    aspect-ratio: 1/.5;
+    padding: 1rem 1.5rem;
     outline: 1px solid sandybrown;
 
     position: absolute;
     background-color: var(--background);
 
     display: none;
+    font-size: 1.5rem;
     justify-content: center;
     place-items: center;
 }

@@ -197,7 +197,7 @@ mainContainer.addEventListener('touchend', (e) => {
 })
 
 let lastKeyPressed, snakeDirection = 'none', keyCounter;
-const alertBox = document.getElementById('alertBox');
+const alertBox = document.getElementById('alertbox');
 
 // keyboard input from user
 window.addEventListener('keyup', (events) => {
