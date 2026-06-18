@@ -1,5 +1,6 @@
 const ghostFaces = ["ghostBlue", "ghostYellow", "ghostRed", "ghostGreen"];
-const swoop = new Audio("assets/swoop.mp3");
+const swoop = new Audio("assets/Short-pop.mp3");
+swoop.preload = "auto";
 
 function randomNumGenerator(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
