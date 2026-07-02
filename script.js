@@ -1,7 +1,5 @@
 const ghostFaces = ["ghostBlue", "ghostYellow", "ghostRed", "ghostGreen"];
-const swoop = new Audio("assets/Short-pop.mp3");
-swoop.preload = "auto";
-
+const swoop = new Audio("assets/swoop.mp3");
 function randomNumGenerator(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
@@ -46,7 +44,8 @@ function displayGrid() {
   }
 
   let i = 1,
-    boxOpacityIntervalDuration = 756 / (horizontalBoxes * verticalBoxes);
+    z;
+  boxOpacityIntervalDuration = 756 / (horizontalBoxes * verticalBoxes);
   const boxOpacityInterval = setInterval(() => {
     if (i <= horizontalBoxes * verticalBoxes) {
       document.querySelector(
@@ -54,6 +53,7 @@ function displayGrid() {
       ).style.opacity = 1;
     } else {
       clearInterval(boxOpacityInterval);
+      clear;
     }
     i = i + 1;
   }, boxOpacityIntervalDuration);
